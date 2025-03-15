@@ -1,5 +1,5 @@
  
-package br.com.fiap.model;
+package br.com.fiap.Bank_project.model;
  
 import java.time.LocalDate;
 import java.util.Random;
