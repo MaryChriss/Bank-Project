@@ -78,22 +78,22 @@ public class ContaController {
         return getContaCPF(cpf);
     }
  
-  // Encerrar conta
-@DeleteMapping("/{id}/encerrar")
-@ResponseStatus(HttpStatus.NO_CONTENT)
-public void encerrarConta(@PathVariable Long id) {
-    log.info("Encerrando conta " + id);
+    // Encerrar conta
+    @DeleteMapping("/{id}/encerrar")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void encerrarConta(@PathVariable Long id) {
+        log.info("Encerrando conta " + id);
 
-    Conta conta = getConta(id);
+        Conta conta = getConta(id);
 
-    conta.setAtiva(false);
+        conta.setAtiva(false);
 
-    repository = repository.stream()
-            .map(c -> c.getId().equals(id) ? conta : c)
-            .toList();
+        repository = repository.stream()
+                .map(c -> c.getId().equals(id) ? conta : c)
+                .toList();
 
-    log.info("Conta " + id + " foi marcada como inativa.");
-}
+        log.info("Conta " + id + " foi marcada como inativa.");
+    }
 
     // Depósito
     @PutMapping("/{id}/depositar")
@@ -166,7 +166,7 @@ public void encerrarConta(@PathVariable Long id) {
                 .filter(c -> c.getCpfTitular().equals(cpf))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Conta com CPF " + cpf + " não encontrada"));
+                        "Conta com o CPF: " + cpf + " não encontrada"));
     }
 }
  
